@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bg-violet {
+    background-color: rgb(131, 69, 201);
+}
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+  }
+
+  .top-violet-div {
+    min-height: 190px !important;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+
+  .text-link{
+    cursor: pointer;
+  }
+
+  .search{
+    border: 0px !important;
+  }
+  
+  .search:focus{
+    border: 0px !important;
+    border-color: #FFFFFF;
+    outline: none;
+  }
+
+  .img-not-found {
+    height: 250px;
+    opacity: 0.95;
+    object-fit: cover;
+  }
