@@ -37,3 +37,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     opacity: 0.95;
     object-fit: cover;
   }
+
+  .drop-down-expand{
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y:auto;
+    top: 160px;
+    z-index: 1200;
+  }

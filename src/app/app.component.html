@@ -1,34 +1,35 @@
 <div class="w-100 vh-100 m-0 p-0" style="background-color: #f8f8f8; height: 100vh !important;">
   <div class="w-100 bg-violet top-violet-div">
-  </div>
-  <div class="row justify-content-center px-0 pt-2 mx-0" style="margin-top: -180px;">
-    <div class="col-sm-5 row">
-      <div class="row w-100 m-0 p-0">
-        <div (click)="locationDropDown()" class="text-link col-sm-12 m-2 vertical-center p-3 bg-white m-2"
-          style="border-radius: 10px;">
-          <span class="material-icons mr-2 text-danger">location_on</span>
-          <input type="text" [(ngModel)]="search" (input)="searchForLocation($event)"
-            placeholder="Search Location" class="search" style="width: 100%;">
-          <span class="material-icons mr-2 text-secondary">{{isLocationDropDownOpen ? 'arrow_drop_up' :
-            'arrow_drop_down'}}</span>
-        </div>
-        <div (click)="detectLocation()" class="col-sm-12 text-link vertical-center p-3 m-2 bg-white"
-          *ngIf="isLocationDropDownOpen" style="border-radius: 10px;">
-          <span class="material-icons text-danger mr-2">gps_fixed</span>
-          <span class="text-danger mr-1">Detect Location</span>
-          <span class="text-secondary">using GPS</span>
-        </div>
-        <div (click)="detectLocation()" *ngIf="filteredCities.length > 0"
-          class="border border-secondary col-sm-12 text-link p-3 m-2 bg-white"
-          style="border-radius: 10px; overflow-y:auto">
-          <div class="m-2 text-dark text-link" (click)="selectLocation(location)" *ngFor="let location of filteredCities">
-            <span class="d-block">{{location.name}}</span>
-            <hr>
+    <div class="row justify-content-center px-0 pt-2 mx-0">
+      <div class="col-sm-5 row">
+        <div class="row w-100 m-0 p-0">
+          <div (click)="locationDropDown()" class="text-link col-sm-12 m-2 vertical-center p-3 bg-white m-2"
+            style="border-radius: 10px;">
+            <span class="material-icons mr-2 text-danger">location_on</span>
+            <input type="text" id="search-bar" [(ngModel)]="search" (blur)="blur()" (input)="searchForLocation($event)"
+              placeholder="Search Location" class="search" style="width: 100%;">
+            <span class="material-icons mr-2 text-secondary">{{isLocationDropDownOpen ? 'arrow_drop_up' :
+              'arrow_drop_down'}}</span>
+          </div>
+          <div (click)="detectLocation()" class="col-sm-12 text-link vertical-center p-3 m-2 bg-white"
+            *ngIf="isLocationDropDownOpen || filteredCities.length > 0" style="border-radius: 10px;">
+            <span class="material-icons text-danger mr-2">gps_fixed</span>
+            <span class="text-danger mr-1">Detect Location</span>
+            <span class="text-secondary">using GPS</span>
+          </div>
+          <div (click)="detectLocation()" *ngIf="filteredCities.length > 0"
+            class="drop-down-expand position-absolute border border-secondary col-sm-12 text-link p-3 m-2 bg-white">
+            <div class="m-2 text-dark text-link" (click)="selectLocation(location)"
+              *ngFor="let location of filteredCities">
+              <span class="d-block">{{location.name}}</span>
+              <hr>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 
   <div class="row m-0 p-0 justify-content-center w-100 vertical-center">
     <div class="col-sm-12 mx-0 mt-2 p-3">
@@ -37,7 +38,7 @@
     </div>
   </div>
   <div class="row p-2 m-0 w-100 justify-content-start" *ngIf="chefs.length > 0" style="margin-top: 110px;">
-    <span class="text-dark col-sm-8 mt-5 mb-3 h5">Showing {{chefs.length}} chefs</span>
+    <span class="text-dark col-sm-8 mt-5 mb-3 h5">Showing {{chefs.length}} chef</span>
     <div class="col-sm-4 bg-white p-3 m-3" *ngFor="let chef of chefs" style="border-radius: 12px">
       <span class="d-block">Name : {{chef.firstName + ' ' + chef.lastName}}</span>
       <span class="d-block">Gender : {{chef.gender}}</span>

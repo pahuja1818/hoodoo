@@ -40,35 +40,47 @@ export class AppComponent {
   }
 
   locationDropDown() {
-    this.isLocationDropDownOpen = !this.isLocationDropDownOpen;
-    if (this.isLocationDropDownOpen) this.search = '';
-    else this.search = this.selectedCity.name;
+    document.getElementById('search-bar')?.focus();
+    this.isLocationDropDownOpen = true;
+    this.search = '';
+
   }
 
   searchForLocation(event: any) {
-    if (event.target.value.length > 2) {
+    if (event.target.value.length >= 2) {
       this.filteredCities = this.allIndianCities.filter((city: ICity) =>
         city.name.toLowerCase().includes(event.target.value.toLowerCase())
       );
     }
+    else this.filteredCities = [];
   }
 
   selectLocation(location: any) {
     this.selectedCity = location;
     this.search = location.name;
+    this.isLocationDropDownOpen = false;
     this.filteredCities = [];
     this.getChefs();
+  }
+
+  blur() {
+    setTimeout(() => {
+      this.isLocationDropDownOpen = false;
+    }, 100)
+    //this.search = this.selectedCity.name;
+    //this.filteredCities = [];
   }
 
   detectLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((a: any) => {
-        //api is noot very much good, so i used this closest method to find city near to respecive cordinates!
+        //api is not very much good, so i used this closest method to find city near to respecive cordinates!
         this.selectedCity = this.allIndianCities.reduce((prev: any, curr: any) => {
           return (Math.abs(+curr.latitude - a.coords.latitude) < Math.abs(+prev.latitude - a.coords.latitude) && Math.abs(+curr.longitude - a.coords.longitude) < Math.abs(+prev.longitude - a.coords.longitude) ? curr : prev);
         });
-
+        this.search = this.selectedCity.name;
         this.isLocationDropDownOpen = false;
+        this.filteredCities = [];
         this.getChefs();
 
       });
